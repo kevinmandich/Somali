@@ -1,0 +1,32 @@
+Things I had to do to get the code to work:
+
+1) sudo pip uninstall requests
+2) sudo pip install -I requests==0.14.0
+3) sudo vim /Library/Python/2.7/site-packages/requests/packages/urllib3/connectionpool.py
+4) change the following:
+
+    def connect(self):
+        # Add certificate verification
+        sock = socket.create_connection((self.host, self.port), self.timeout)
+
+        # Wrap socket using verification with the root certs in
+        # trusted_root_certs
+        try:
+          self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file,
+                                      cert_reqs=self.cert_reqs,
+                                      ca_certs=self.ca_certs,
+                                      ssl_version=ssl.PROTOCOL_SSLv23) # <----
+
+to:
+
+    def connect(self):
+        # Add certificate verification
+        sock = socket.create_connection((self.host, self.port), self.timeout)
+
+        # Wrap socket using verification with the root certs in
+        # trusted_root_certs
+        try:
+          self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file,
+                                      cert_reqs=self.cert_reqs,
+                                      ca_certs=self.ca_certs,
+                                      ssl_version=ssl.PROTOCOL_TLSv1) # <----
