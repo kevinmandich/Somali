@@ -115,7 +115,7 @@ class GetESPNProjections(object):
               player_json[h2] = x.getText().split('/')[i]
             continue
           player_json[h] = datum
-        jsons += player_json
+        jsons.append(player_json)
         players += 1
         if self.verbose:
           print player_json
@@ -439,6 +439,8 @@ class GetMFLADPResults(object):
       self.keeper = ['0','1']
     if ppr == 'no':
       self.ppr = ['0']
+    elif ppr == 'both':
+      self.ppr = ['-1']
     else:
       self.ppr = ['0','-1']
 
@@ -628,7 +630,7 @@ class GetFSProjections(object):
 if __name__ == '__main__':
 
   espn = GetESPNProjections()
-  #espn.get()
+  espn.get()
 
   nfl = GetNFLProjections()
   #nfl.get()
@@ -639,11 +641,11 @@ if __name__ == '__main__':
   fps = GetFPSProjections()
   #fps.get()
 
-  adp = GetMFLADPResults(keeper='both', ppr='both')
-  #adp.get()
+  mfl = GetMFLADPResults(keeper='no', ppr='both')
+  #mfl.get()
 
   fs = GetFSProjections()
-  fs.get()
+  #fs.get()
 
 
 
