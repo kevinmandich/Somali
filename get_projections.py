@@ -633,19 +633,19 @@ if __name__ == '__main__':
   espn.get()
 
   nfl = GetNFLProjections()
-  #nfl.get()
+  nfl.get()
 
   cbs = GetCBSProjections()
-  #cbs.get()
+  cbs.get()
 
   fps = GetFPSProjections()
-  #fps.get()
+  fps.get()
 
   mfl = GetMFLADPResults(keeper='no', ppr='both')
-  #mfl.get()
+  mfl.get()
 
   fs = GetFSProjections()
-  #fs.get()
+  fs.get()
 
 
 
